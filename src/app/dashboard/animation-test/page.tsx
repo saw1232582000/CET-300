@@ -1,13 +1,13 @@
 
-import BtnControlAnimation from "~/app/_components/animation-test/btn-control";
-import DrageAnimation from "~/app/_components/animation-test/drag";
-import Listanimation from "~/app/_components/animation-test/list-animation";
-import ListAnimation from "~/app/_components/animation-test/list-animation";
-import SvgAnimation from "~/app/_components/animation-test/svg-animation";
-import Test1animation from "~/app/_components/animation-test/test1";
-import AnimationWithBgColor from "~/app/_components/animation-test/test2";
-import ScrollAnimation from "~/app/_components/animation-test/use-scroll-animation";
-import FramerHooksTest from "~/app/_components/animation-test/useAnimationTest";
+import BtnControlAnimation from "~/custom-component/animation-test/btn-control";
+import DrageAnimation from "~/custom-component/animation-test/drag";
+import Listanimation from "~/custom-component/animation-test/list-animation";
+import ListAnimation from "~/custom-component/animation-test/list-animation";
+import SvgAnimation from "~/custom-component/animation-test/svg-animation";
+import Test1animation from "~/custom-component/animation-test/test1";
+import AnimationWithBgColor from "~/custom-component/animation-test/test2";
+import ScrollAnimation from "~/custom-component/animation-test/use-scroll-animation";
+import FramerHooksTest from "~/custom-component/animation-test/useAnimationTest";
 
 const AnimationTestPage = () => {
   return (
@@ -20,7 +20,8 @@ const AnimationTestPage = () => {
       <FramerHooksTest/> */}
       {/* <ScrollAnimation/> */}
       {/* <SvgAnimation/> */}
-      <DrageAnimation/>
+      {/* <DrageAnimation/> */}
+      {/* <BtnControlAnimation/> */}
     </div>
   );
 };

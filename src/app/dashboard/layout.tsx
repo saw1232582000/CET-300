@@ -1,9 +1,9 @@
 import { ReactNode, Suspense } from "react";
 
 import { SideBarProvider } from "~/context/sidebar-context";
-import SheetMenu from "../_components/SheetMenu";
-import Nav from "../_components/Nav";
-import SideBar from "../_components/sidebar/sidebar";
+import SheetMenu from "../../custom-component/SheetMenu";
+import Nav from "../../custom-component/Nav";
+import SideBar from "../../custom-component/sidebar/sidebar";
 
 const DahsboardLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -13,12 +13,11 @@ const DahsboardLayout = ({ children }: { children: ReactNode }) => {
           {/* <Nav>
             <SheetMenu />
           </Nav> */}
-          <SideBar/>
+          <SideBar />
 
           <div className="flex  w-full">{children}</div>
         </SideBarProvider>
       </Suspense>
-      
     </div>
   );
 };

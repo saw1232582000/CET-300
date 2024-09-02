@@ -7,7 +7,7 @@ import Input from "~/app/_components/input";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import LoadingIcon from "~/app/_components/icon/loading-icon";
+import LoadingIcon from "~/custom-component/icon/loading-icon";
 
 type SignInType = {
   userName: string;
