@@ -8,6 +8,8 @@ import {
   useAnimate,
   useAnimation,
 } from "framer-motion";
+import { useRouter } from "next/navigation";
+
 
 import { useState } from "react";
 import { useSideBar } from "~/context/sidebar-context";
@@ -25,6 +27,7 @@ const SideBar = () => {
     isHovered: false,
     id: null,
   });
+  const router=useRouter();
   const shouldHover = (id: string): boolean => {
     if (isRouteHovered.id == id) {
       return true;
@@ -85,18 +88,23 @@ const SideBar = () => {
       initial={sidebar.isCollpase ? "closed" : "open"}
       animate={sideBarControl}
       variants={sideBarVariant}
-      className="flex w-full flex-col bg-[#282c3c]"
+      className="flex h-screen w-full flex-col bg-[#282c3c]"
     >
-      <div className={clsx(" flex w-full flex-col place-items-start px-5 justify-start mt-5 transition-all duration-200 ease-out",{
-        "":sidebar.isCollpase,
-        "":!sidebar.isCollpase
-      })}>
-        <button className="border rounded-full hover:bg-[#48545c]">
+      <div
+        className={clsx(
+          " mt-5 flex w-full flex-col place-items-start justify-start px-5 transition-all duration-200 ease-out",
+          {
+            "": sidebar.isCollpase,
+            "": !sidebar.isCollpase,
+          },
+        )}
+      >
+        <button className="rounded-full border hover:bg-[#48545c]">
           <motion.svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            stroke-width="1.5"
+            strokeWidth="1.5"
             stroke="white"
             className="h-6 w-6 "
             onClick={toggleSideBar}
@@ -105,8 +113,8 @@ const SideBar = () => {
             animate={sidebar.isCollpase ? "closed" : "open"}
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               d="M15.75 19.5 8.25 12l7.5-7.5"
             />
           </motion.svg>
@@ -118,9 +126,9 @@ const SideBar = () => {
           duration: 1,
           staggerChildren: 0.5,
         }}
-        className={clsx("mt-[20px] flex w-full  flex-col gap-y-5 ",{
-          "px-2":sidebar.isCollpase,
-          "px-5":!sidebar.isCollpase,
+        className={clsx("mt-[20px] flex w-full  flex-col gap-y-5 ", {
+          "px-2": sidebar.isCollpase,
+          "px-5": !sidebar.isCollpase,
         })}
       >
         {sidebar.routes.map((route) => {
@@ -133,6 +141,7 @@ const SideBar = () => {
                 onMouseLeave={() =>
                   setRouteHovered({ isHovered: false, id: null })
                 }
+                onClick={()=>router.push(route.route.path)}
                 initial={{
                   x: -10,
                   y: -10,
@@ -162,10 +171,13 @@ const SideBar = () => {
                     ease: "linear",
                   },
                 }}
-                className={clsx("relative flex w-full justify-center py-3 gap-x-1 group  rounded-[5px]",{
-                  "":sidebar.isCollpase,
-                  "":!sidebar.isCollpase,
-                })}
+                className={clsx(
+                  "group cursor-pointer relative flex w-full  gap-x-1 rounded-[5px]  py-3",
+                  {
+                    "justify-center": sidebar.isCollpase,
+                    "justify-start": !sidebar.isCollpase,
+                  },
+                )}
               >
                 <motion.div
                   // ref={scope}
@@ -180,13 +192,13 @@ const SideBar = () => {
                     clipPath: shouldHover(route.route.id)
                       ? "polygon(0 0, 100% 0, 100% 100%, 0 100%)"
                       : "polygon(0 0, 0 0, 0 100%, 0% 100%)",
-                      transition:{
-                        duration:shouldHover(route.route.id) ? 0.5:0,
-                        type:"spring",
-                        bounce:0
-                      }
+                    transition: {
+                      duration: shouldHover(route.route.id) ? 0.5 : 0,
+                      type: "spring",
+                      bounce: 0,
+                    },
                   }}
-                  className="absolute inset-0 bg-[#48545c] rounded-[5px]"
+                  className="absolute inset-0 rounded-[5px] bg-[#48545c]"
                 ></motion.div>
                 <div className="z-10">{route?.route?.icon}</div>
                 <AnimatePresence>

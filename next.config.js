@@ -7,13 +7,21 @@ await import("./src/env.js");
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
-    domains: [
-      "medusa-public-images.s3.eu-west-1.amazonaws.com",
-      "localhost",
-      "picsum.photos",
-      "kblab-kyc-staging.s3.ap-southeast-1.amazonaws.com",
-      "cdn.dribbble.com",
-      "tollgate-upload.s3.ap-southeast-1.amazonaws.com",
+    unoptimized: true,
+
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "tollgate-upload.s3.ap-southeast-1.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+     
+      {
+        protocol: "https",
+        hostname: "img.icons8.com",
+        port: "",
+      },
     ],
   },
 };

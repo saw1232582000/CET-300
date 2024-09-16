@@ -24,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex w-full items-center justify-center font-sans ${inter.variable}`}
+        className={`flex w-full  font-sans ${inter.variable}`}
       >
         <TRPCReactProvider>
-          <div className="flex w-full items-center justify-center">
+          <div className="flex w-full  min-h-screen justify-center overflow-x-hidden ">
             {children}
           </div>
         </TRPCReactProvider>

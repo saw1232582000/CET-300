@@ -10,18 +10,20 @@ import { useRouter } from "next/navigation";
 import LoadingIcon from "~/custom-component/icon/loading-icon";
 import Input from "~/custom-component/input";
 
-type SignInType = {
+type RegisterInputProps = {
   userName: string;
   password: string;
+  confirmPassword:string;
+  email:string;
 };
 
-const Login = () => {
+const Register = () => {
   const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<SignInType>();
+  } = useForm<RegisterInputProps>();
 
   const onSubmit = handleSubmit(async (credentials) => {
     toast("Pleas wait...", {
@@ -100,6 +102,15 @@ const Login = () => {
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
+                <span>Email</span>
+                <Input
+                  label="email"
+                  {...register("email", { required: "email required" })}
+                  errors={errors}
+                  required
+                />
+              </div>
+              <div className="flex flex-col space-y-1.5">
                 <span>Password</span>
                 <Input
                   label="password"
@@ -109,11 +120,21 @@ const Login = () => {
                   required
                 />
               </div>
+              <div className="flex flex-col space-y-1.5">
+                <span>Password</span>
+                <Input
+                  label="Confirm password"
+                  {...register("confirmPassword", { required: "confirmPassword required" })}
+                  type="password"
+                  errors={errors}
+                  required
+                />
+              </div>
               <button
                 className="w-full rounded bg-[#050708] py-2 text-white hover:bg-[#050708]/90"
                 type="submit"
               >
-                Sign In
+                Sign Up
               </button>
             </div>
           </form>
@@ -123,4 +144,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

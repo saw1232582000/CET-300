@@ -1,3 +1,5 @@
+'use client'
+
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -58,9 +60,10 @@ const PaginationComponent = ({
         <span>Previous</span>
       </button>
       <div className="flex flex-row items-center gap-x-3">
-        {pagesToBeRendered?.map((p) => (
+        {pagesToBeRendered?.map((p,index) => (
           <>
             {p<=totalPages && <button
+              key={index}
               className={clsx("", {
                 "border bg-gray-200 px-2": currentPageNo == p,
               })}

@@ -88,6 +88,7 @@ export const authOptions: NextAuthOptions = {
     //   },
     // }),
     jwt: async ({ token, user }) => {
+      console.log("JWT user data:" ,user);
       user && (token.user = user);
       return token;
     },
